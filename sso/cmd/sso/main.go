@@ -30,6 +30,7 @@ func main() {
 	log.Warn("warn message")
 
 	//TODO: инициализировать приложение (app)
+
 	//TODO: запустить gRPC приложение
 }
 
