@@ -1,6 +1,6 @@
 env: "local" #dev, prod
-storage_path: "./storege/sso.db"
+storage_path: "./storage/sso.db"
 token_ttl: 1h
 grpc:
   port: 44044
-  timeout: 10h # timeout prod 5s
+  timeout: 10h # timeout prod 5sgo run cmd/sso/main.go --config=./cmd/config/local.yaml

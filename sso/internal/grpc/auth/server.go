@@ -5,6 +5,8 @@ import (
 
 	ssov1 "github.com/Aleks12387/gRPC/protos/gen/go/sso"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type serverAPI struct {
@@ -19,7 +21,13 @@ func (s *serverAPI) Login(
 	ctx context.Context,
 	req *ssov1.LoginRequest,
 ) (*ssov1.LoginResponse, error) {
-	panic("implement me")
+	if req.GetEmail() == "" {
+		return nil, status.Error(codes.InvalidArgument, "email is required")
+	}
+
+	return &ssov1.LoginResponse{
+		Token: req.GetEmail(),
+	}, nil
 }
 
 func (s *serverAPI) Register(

@@ -3,7 +3,7 @@ module sso
 go 1.24.0
 
 require (
-	github.com/Aleks12387/gRPC v0.0.3-0.20251115143105-0584a8da62b9
+	github.com/Aleks12387/gRPC v0.0.3
 	github.com/ilyakaznacheev/cleanenv v1.5.0
 	google.golang.org/grpc v1.55.0-dev
 )
