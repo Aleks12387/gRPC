@@ -3,7 +3,7 @@ package auth
 import (
 	"context"
 
-	ssov1 "github.com/Aleks12387/gRPC/gen/go/sso"
+	ssov1 "github.com/Aleks12387/gRPC/protos/gen/go/sso"
 	"google.golang.org/grpc"
 )
 

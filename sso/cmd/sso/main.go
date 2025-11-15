@@ -3,6 +3,7 @@ package main
 import (
 	"log/slog"
 	"os"
+	"sso/internal/app"
 	"sso/internal/config"
 )
 
@@ -23,11 +24,9 @@ func main() {
 		slog.Int("port", cfg.GRPC.Port),
 	)
 
-	log.Debug("debug message")
+	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.TokenTTL)
 
-	log.Error("error message")
-
-	log.Warn("warn message")
+	application.GRPCSrv.MustRun()
 
 	//TODO: инициализировать приложение (app)
 

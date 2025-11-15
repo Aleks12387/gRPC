@@ -32,6 +32,12 @@ func New(
 	}
 }
 
+func (a *App) MustRun() {
+	if err := a.Run(); err != nil {
+		panic(err)
+	}
+}
+
 func (a *App) Run() error {
 	const op = "grpcapp.Run" //teg const
 
@@ -52,4 +58,13 @@ func (a *App) Run() error {
 	}
 
 	return nil
+}
+
+// Stope stops gRPC server.
+func (a *App) Stop() {
+	const op = "grpcaap.Stop"
+
+	a.log.With(slog.String("op", op)).Info("stopping gRPC server", slog.Int("port", a.port))
+
+	a.gRPCServer.GracefulStop()
 }
