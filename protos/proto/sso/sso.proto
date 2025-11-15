@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "tuzov.sso.v1;ssov1";
+// ИСПРАВЬТЕ эту строку:
+option go_package = "github.com/Aleks12387/gRPC/protos/gen/go/sso;ssov1";
 
 // Auth is service for managing permissions and roles.
 service Auth {
