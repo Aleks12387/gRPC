@@ -20,7 +20,7 @@ func New(
 
 	//TODO: init auth server(auth)
 
-	grpcApp := grpcapp.New(log, grpcPort)
+	grpcApp := grpcapp.New(log, nil, grpcPort)
 
 	return &App{
 		GRPCSrv: grpcApp,

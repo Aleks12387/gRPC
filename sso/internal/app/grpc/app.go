@@ -19,11 +19,12 @@ type App struct {
 
 func New(
 	log *slog.Logger,
+	authService authgrpc.Auth, // Добавленный параметр
 	port int,
 ) *App {
 	gRPCServer := grpc.NewServer()
 
-	authgrpc.RegisterServerAPI(gRPCServer)
+	authgrpc.RegisterServerAPI(gRPCServer, authService)
 
 	return &App{
 		log:        log,
@@ -39,7 +40,7 @@ func (a *App) MustRun() {
 }
 
 func (a *App) Run() error {
-	const op = "grpcapp.Run" //teg const
+	const op = "grpcapp.Run"
 
 	log := a.log.With(
 		slog.String("op", op),
@@ -60,9 +61,9 @@ func (a *App) Run() error {
 	return nil
 }
 
-// Stope stops gRPC server.
+// Stop stops gRPC server.
 func (a *App) Stop() {
-	const op = "grpcaap.Stop"
+	const op = "grpcapp.Stop"
 
 	a.log.With(slog.String("op", op)).Info("stopping gRPC server", slog.Int("port", a.port))
 
