@@ -14,11 +14,24 @@ type Config struct {
 	GRPC           GRPCConfig `yaml:"grpc"`
 	MigrationsPath string
 	TokenTTL       time.Duration `yaml:"token_ttl" env-default:"1h"`
+	Client         ClinceConfig  `yaml:"clients"`
+	AppSecret      string        `yaml:"app_secret" env-required:"true" env:"APP_SECRET"`
 }
 
 type GRPCConfig struct {
 	Port    int           `yaml:"port"`
 	Timeout time.Duration `yaml:"timeout"`
+}
+
+type Client struct {
+	Address      string        `yaml:"address"`
+	Timeout      time.Duration `yaml:"timeout"`
+	RetriesCount int           `yaml:"retriesCount"`
+	Insecure     bool          `yaml:"insecure"`
+}
+
+type ClinceConfig struct {
+	SSO Client `yaml: "sso"`
 }
 
 func MustLoad() *Config {
